@@ -35,8 +35,8 @@ def augment_image(image, mask):
     return augmented_image_np, augmented_mask_np
 
 
-data_dir = 'data'
-save_dir = 'augmented_data'
+data_dir = 'images/original_data'
+save_dir = 'images/augmented_data'
 all_contents_of_data_dir = os.listdir(data_dir)
 class_list = [item for item in all_contents_of_data_dir if os.path.isdir(os.path.join(data_dir, item))]
 class_list.sort()
@@ -61,6 +61,8 @@ for class_name in class_list:
     for image_path, mask_path in zip(image_list, mask_list):
         if image_path.endswith(('.jpg', '.jpeg', '.png')):
             index += 1
+            if class_name == 'Concrete' and index == 461:
+                continue
             image_path = os.path.join(image_subdir, image_path)
             mask_path = os.path.join(mask_subdir, mask_path)
             image = cv2.imread(image_path)
@@ -71,7 +73,3 @@ for class_name in class_list:
             cv2.imwrite(save_path_aug_image, augmented_image)
             cv2.imwrite(save_path_aug_mask, augmented_mask)
             print(class_name + ' ' + str(index) + '/' + str(len(image_list)))
-
-
-
-

@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 import re
 
+
 def sort_by_number(path):
     # Extract the numeric part of the filename using regular expressions
     match = re.search(r'image_(\d+)', path)
@@ -14,8 +15,7 @@ def sort_by_number(path):
         return float('inf')  # Return infinity if no numeric part found
 
 
-
-data_dir = 'data'
+data_dir = 'images/original_data'
 all_contents_of_data_dir = os.listdir(data_dir)
 class_list = [item for item in all_contents_of_data_dir if os.path.isdir(os.path.join(data_dir, item))]
 class_list.sort()
@@ -42,4 +42,3 @@ for class_name in class_list:
             image_np = np.array(mask_image)
             cv2.imwrite(mask_path, image_np)
             print(class_name+' '+str(index)+'/'+str(len(image_list)))
-
