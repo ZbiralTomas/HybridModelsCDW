@@ -6,7 +6,7 @@ from torchvision import transforms
 from torch.utils.data import Dataset
 from PIL import Image
 import os
-from model import Unet
+from unet_model import Unet
 import csv
 import time
 import matplotlib.pyplot as plt
